@@ -332,7 +332,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Strip */}
-        <div style={{ display: "flex", alignItems: "center", padding: "24px 0 10px", flexWrap: "wrap", gap: 16, justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", padding: "24px 0 10px", flexWrap: "wrap", gap: 16, justifyContent: "space-around" }}>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", gap: 5, margin: 0 }}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83A4 4 0 1 1 9.17 9.17"/></svg>
             {new Date().getFullYear()} Abhijeet Verma. All rights reserved.
@@ -341,7 +341,7 @@ export default function Footer() {
             Built with&nbsp;<svg width="12" height="12" viewBox="0 0 24 24" fill="#f472b6"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>&nbsp;using Next.js &amp; Django
           </p>
           <button 
-            style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", cursor: "pointer", color: "rgba(255,255,255,0.4)", transition: "all 0.15s", display: "flex", justifyContent: "center", alignItems: "center", boxShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
+            style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", cursor: "pointer", color: "rgba(255,255,255,0.4)", transition: "all 0.15s", justifyContent: "center", boxShadow: "2px 2px 0 rgba(0,0,0,0.3)" }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             onMouseEnter={e => e.currentTarget.style.color = "#a78bfa"}
             onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
