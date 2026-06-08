@@ -436,3 +436,5 @@ body::after {
   border-radius: 50%;
   opacity: 0.5;
 }
+
+@keyframes spin { to { transform: rotate(360deg); } }
