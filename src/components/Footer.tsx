@@ -43,6 +43,12 @@ const ContactIcon = () => (
   </svg>
 );
 
+const WhatsAppIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  </svg>
+);
+
 const CustomPaperAirplane = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22 2L2 10.5L9.75 14.25L22 2Z" />
@@ -78,6 +84,11 @@ const LogoGraphic = () => (
 );
 
 export default function Footer() {
+  const GITHUB_URL = "https://github.com/abhijeetkumar7011-code";
+  const LINKEDIN_URL = "https://www.linkedin.com/in/abhijeet-kumar-57b388232/";
+  const INSTAGRAM_URL = "https://instagram.com/_abhijeet_verma_";
+  const WHATSAPP_URL = "https://wa.me/919568854950?text=Hi%20Abhijeet,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!";
+
   return (
     <>
       <style>{`
@@ -117,11 +128,10 @@ export default function Footer() {
         @media (max-width: 640px) {
           .footer-main-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr !important; /* Forces 2 columns layout on mobile */
+            grid-template-columns: 1fr 1fr !important;
             gap: 36px 16px !important;
           }
           
-          /* Full width adjustments for Intro and Get In Touch blocks on mobile */
           .mobile-full-width {
             grid-column: span 2 !important;
           }
@@ -175,12 +185,14 @@ export default function Footer() {
           cursor: pointer;
           transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
           box-shadow: 0 0 20px rgba(112, 66, 248, 0.08);
+          text-decoration: none;
         }
         .connect-btn:hover {
           background: #7042f8;
           border-color: #7042f8;
           box-shadow: 0 0 30px rgba(112, 66, 248, 0.4);
           transform: translateY(-3px);
+          color: #ffffff;
         }
         .connect-btn svg {
           transition: transform 0.25s ease;
@@ -221,6 +233,11 @@ export default function Footer() {
           margin-bottom: 20px;
           color: #94a3b8;
           font-size: 14px;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        .contact-row:hover {
+          color: #ffffff;
         }
         .icon-badge {
           width: 38px;
@@ -241,7 +258,6 @@ export default function Footer() {
           color: #ffffff;
         }
 
-        /* ── PLANE IMAGE BASELINE ── */
         .vector-canvas {
           position: absolute;
           right: 22%;
@@ -321,10 +337,10 @@ export default function Footer() {
             <p style={{ fontSize: "14px", color: "#94a3b8", lineHeight: "1.65", maxWidth: "290px", marginBottom: "30px" }}>
               I'm always open to discussing product design work or partnership opportunities.
             </p>
-            <button className="connect-btn">
+            <a href="mailto:abhijeetkumar7011@gmail.com" className="connect-btn">
               <CustomPaperAirplane />
               LET'S CONNECT
-            </button>
+            </a>
           </div>
 
           {/* Column 2: Navigation */}
@@ -351,10 +367,16 @@ export default function Footer() {
           <div>
             <h4 className="col-title">Quick Links</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-              {["GitHub", "LinkedIn", "Resume", "Blog", "Testimonials"].map((label) => (
-                <a key={label} href="#" className="link-item">
+              {[
+                { label: "GitHub", url: GITHUB_URL },
+                { label: "LinkedIn", url: LINKEDIN_URL },
+                { label: "WhatsApp", url: WHATSAPP_URL },
+                { label: "Resume", url: "#" },
+                { label: "Blog", url: "#" }
+              ].map((item) => (
+                <a key={item.label} href={item.url} target={item.url !== "#" ? "_blank" : undefined} rel="noopener noreferrer" className="link-item">
                   <span style={{ color: "#7042f8", fontSize: "15px", fontWeight: "300", lineHeight: "1" }}>&rsaquo;</span>
-                  {label}
+                  {item.label}
                 </a>
               ))}
             </div>
@@ -365,19 +387,19 @@ export default function Footer() {
             <h4 className="col-title">Get In Touch</h4>
             <div style={{ display: "flex", flexDirection: "column" }}>
               
-              <div className="contact-row">
+              <a href="mailto:abhijeetkumar7011@gmail.com" className="contact-row">
                 <div className="icon-badge"><MailIcon /></div>
                 <span>abhijeetkumar7011@gmail.com</span>
-              </div>
+              </a>
 
-              <div className="contact-row">
-                <div className="icon-badge"><ContactIcon /></div>
-                <span>+91 70115 17511</span>
-              </div>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="contact-row" title="Chat on WhatsApp">
+                <div className="icon-badge"><WhatsAppIcon /></div>
+                <span>+91 95688 54950 (WhatsApp)</span>
+              </a>
 
               <div className="contact-row">
                 <div className="icon-badge"><MapPinIcon /></div>
-                <span>Meerut, Uttar Pradesh, India</span>
+                <span>Delhi, India</span>
               </div>
 
             </div>
@@ -418,15 +440,15 @@ export default function Footer() {
 
           <div style={{ display: "flex", gap: "12px" }}>
             {[
-              { label: "github", path: "M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" },
-              { label: "linkedin", path: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 4a2 2 0 1 0 0 4 2 2 0 1 0 0-4z" },
-              { label: "twitter", path: "M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" },
-              { label: "instagram", path: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01" }
+              { label: "github", url: GITHUB_URL, icon: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /> },
+              { label: "linkedin", url: LINKEDIN_URL, icon: <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 4a2 2 0 1 0 0 4 2 2 0 1 0 0-4z" /> },
+              { label: "instagram", url: INSTAGRAM_URL, icon: <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01" /> },
+              { label: "whatsapp", url: WHATSAPP_URL, icon: <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /> }
             ].map((soc) => (
-              <a key={soc.label} href="#" className="social-circle-btn">
+              <a key={soc.label} href={soc.url} target="_blank" rel="noopener noreferrer" className="social-circle-btn" title={`Open ${soc.label}`}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                   {soc.label === "instagram" ? <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/> : null}
-                  <path d={soc.path} />
+                  {soc.icon}
                 </svg>
               </a>
             ))}
