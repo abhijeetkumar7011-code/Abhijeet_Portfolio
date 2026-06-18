@@ -236,7 +236,7 @@ export default function Hero() {
                 View My Work <IconArrowRight />
               </button>
             </a>
-            <a href="/Abhijeet_Verma_CV.pdf" download="Abhijeet_Verma_CV.pdf" style={{ textDecoration:"none" }}>
+            <a href="/Abhijeet_Verma_CV.pdf" download="Abhijeet_Kumar_CV.pdf" style={{ textDecoration:"none" }}>
               <button className="btn-outline" style={{ fontSize:"13px", padding:"11px 26px", display:"flex", alignItems:"center", gap:"8px" }}>
                 <IconDownload /> Download CV
               </button>

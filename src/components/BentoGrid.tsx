@@ -43,14 +43,14 @@ export default function BentoGrid() {
         .bento-experience   { grid-area: experience; }
       `}</style>
 
-      <section className="bento-grid">
-        <div className="bento-about"  id="about">     <AboutCard /></div>
-        <div className="bento-skills" id="skills">    <SkillsCard /></div>
-        <div className="bento-services" id="services"><ServicesCard /></div>
-        <div className="bento-projects" id="projects"><ProjectsCard /></div>
-        <div className="bento-contact"  id="contact"> <ContactCard /></div>
-        <div className="bento-tech"     id="tech">    <TechStackCard /></div>
-        <div className="bento-testimonials">          <TestimonialsCard /></div>
+      <section className="bento-grid" style={{ minWidth: 0 }}>
+        <div className="bento-about" style={{ minWidth: 0 }} id="about">     <AboutCard /></div>
+        <div className="bento-skills" style={{ minWidth: 0 }} id="skills">    <SkillsCard /></div>
+        <div className="bento-services" style={{ minWidth: 0 }} id="services"><ServicesCard /></div>
+        <div className="bento-projects" style={{ minWidth: 0 }} id="projects"><ProjectsCard /></div>
+        <div className="bento-contact" style={{ minWidth: 0 }} id="contact"> <ContactCard /></div>
+        <div className="bento-tech" style={{ minWidth: 0 }} id="tech">    <TechStackCard /></div>
+        <div className="bento-testimonials" style={{ minWidth: 0 }}>          <TestimonialsCard /></div>
         <div className="bento-experience" id="experience"><ExperienceCard /></div>
       </section>
     </>

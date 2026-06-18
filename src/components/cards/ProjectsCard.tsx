@@ -4,35 +4,33 @@ import { useState } from "react";
 import CardWrapper from "../CardWrapper";
 import { projects } from "@/data/projects";
 
-const ExternalLink = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>;
-const Lock = () => <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>;
-const ChevronLeft  = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>;
-const ChevronRight = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>;
+const ExternalLink = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>;
+const Lock = () => <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>;
+const ChevronLeft = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>;
+const ChevronRight = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>;
 
 const categories = ["All", "Architecture", "Healthcare", "CRM", "Analytics", "UI/UX"];
 
 const categoryColors: Record<string, string> = {
   Architecture: "#a78bfa",
-  Healthcare:   "#34d399",
-  CRM:          "#60a5fa",
-  Analytics:    "#f97316",
-  "UI/UX":      "#f472b6",
+  Healthcare: "#34d399",
+  CRM: "#60a5fa",
+  Analytics: "#f97316",
+  "UI/UX": "#f472b6",
 };
 
 const categoryBg: Record<string, string> = {
   Architecture: "rgba(167,139,250,0.15)",
-  Healthcare:   "rgba(52,211,153,0.12)",
-  CRM:          "rgba(96,165,250,0.12)",
-  Analytics:    "rgba(249,115,22,0.12)",
-  "UI/UX":      "rgba(244,114,182,0.12)",
+  Healthcare: "rgba(52,211,153,0.12)",
+  CRM: "rgba(96,165,250,0.12)",
+  Analytics: "rgba(249,115,22,0.12)",
+  "UI/UX": "rgba(244,114,182,0.12)",
 };
 
 export default function ProjectsCard() {
   const [active, setActive] = useState("All");
 
   const filtered = active === "All" ? projects : projects.filter(p => p.category === active);
-
-  const scrollRef = (el: HTMLDivElement | null) => {};
 
   return (
     <>
@@ -49,10 +47,10 @@ export default function ProjectsCard() {
           display: flex;
           gap: 16px;
           padding: 4px 2px 8px;
-          width: max-content;
+          min-width: 100%; width: 100%;
         }
         .proj-card-item {
-          width: 230px;
+          width: 240px;
           flex-shrink: 0;
           border-radius: 18px;
           overflow: hidden;
@@ -88,93 +86,145 @@ export default function ProjectsCard() {
           background: rgba(124,77,255,0.1);
           color: #c4b5fd;
         }
+        .proj-mockup-window {
+          height: 135px;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          padding: 0 12px;
+          border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .proj-screenshot-img {
+          width: 100%;
+          height: 85%;
+          object-fit: cover;
+          object-position: top center;
+          border-radius: 6px 6px 0 0;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-bottom: none;
+          box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+          transition: transform 0.4s ease;
+        }
+        .proj-card-item:hover .proj-screenshot-img {
+          transform: translateY(-2px) scale(1.02);
+        }
       `}</style>
 
       <CardWrapper>
-        {/* Header row */}
-        <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", flexWrap:"wrap", gap:12, marginBottom:18 }}>
+        {/* Original Header row and text typography */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 18 }}>
           <div>
             <p className="section-label">Featured Work</p>
-            <h3 style={{ fontFamily:"var(--font-display)", fontSize:22, fontWeight:700, marginTop:8, letterSpacing:"-0.02em" }}>Recent Projects</h3>
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 700, marginTop: 8, letterSpacing: "-0.02em" }}>Recent Projects</h3>
           </div>
           {/* Scroll arrows */}
-          <div style={{ display:"flex", gap:6, alignItems:"center", marginTop:4 }}>
+          <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
             <button className="proj-scroll-btn" onClick={() => {
               const el = document.getElementById("proj-scroll");
-              if(el) el.scrollBy({ left:-260, behavior:"smooth" });
+              if (el) el.scrollBy({ left: -260, behavior: "smooth" });
             }}><ChevronLeft /></button>
             <button className="proj-scroll-btn" onClick={() => {
               const el = document.getElementById("proj-scroll");
-              if(el) el.scrollBy({ left:260, behavior:"smooth" });
+              if (el) el.scrollBy({ left: 260, behavior: "smooth" });
             }}><ChevronRight /></button>
           </div>
         </div>
 
-        {/* Filter tabs */}
-        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:18 }}>
+        {/* Original Filter chips styles */}
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 18 }}>
           {categories.map(cat => (
             <button key={cat} className="proj-filter-btn"
               onClick={() => setActive(cat)}
               style={{
-                background: active===cat ? "rgba(124,77,255,0.2)" : "rgba(255,255,255,0.04)",
-                borderColor: active===cat ? "rgba(124,77,255,0.5)" : "rgba(255,255,255,0.08)",
-                color: active===cat ? "#c4b5fd" : "rgba(255,255,255,0.4)",
+                background: active === cat ? "rgba(124,77,255,0.2)" : "rgba(255,255,255,0.04)",
+                borderColor: active === cat ? "rgba(124,77,255,0.5)" : "rgba(255,255,255,0.08)",
+                color: active === cat ? "#c4b5fd" : "rgba(255,255,255,0.4)",
               }}>
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Horizontal scroll track */}
+        {/* Horizontal scroll track wrapper */}
         <div className="proj-scroll-wrap" id="proj-scroll">
           <div className="proj-track">
             {filtered.map((project) => {
               const col = categoryColors[project.category] || "#a78bfa";
-              const bg  = categoryBg[project.category]    || "rgba(124,77,255,0.15)";
-              const href = project.projectUrl?.trim() ? project.projectUrl : "/not-found";
+              const bg = categoryBg[project.category] || "rgba(124,77,255,0.15)";
+              const href = project.projectUrl?.trim() ? project.projectUrl : "";
+
+              // Premium Unsplash mockup placeholders synced dynamically with dark UI palettes
+              let screenshotSrc = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop";
+
+              if (project.category === "Architecture" || project.title.toLowerCase().includes("architect")) {
+                screenshotSrc = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop";
+              }
+              if (project.title.toLowerCase().includes("crm") || project.category === "CRM") {
+                screenshotSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop";
+              } else if (project.title.toLowerCase().includes("ai") || project.title.toLowerCase().includes("writer")) {
+                screenshotSrc = "https://images.unsplash.com/photo-1618005198143-e5283b519a7f?q=80&w=600&auto=format&fit=crop";
+              } else if (project.category === "Healthcare" || project.title.toLowerCase().includes("crysta")) {
+                screenshotSrc = "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600&auto=format&fit=crop";
+              } else if (project.category === "Analytics") {
+                screenshotSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop";
+              }
 
               return (
                 <a
                   key={project.title}
                   href={href || "#"}
-                  onClick={e => { if(!href) e.preventDefault(); }}
+                  onClick={e => { if (!href) e.preventDefault(); }}
                   target={href ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   className="proj-card-item"
                 >
-                  {/* Image / preview area */}
-                  <div style={{ height:140, background:`linear-gradient(135deg, ${bg}, rgba(0,212,255,0.08))`, position:"relative", overflow:"hidden", display:"flex", alignItems:"center", justifyContent:"center" }}>
-                    {/* grid bg */}
-                    <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)", backgroundSize:"18px 18px" }}/>
-                    {/* colored top accent */}
-                    <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, ${col}, transparent)` }}/>
-                    <span style={{ fontSize:44, position:"relative", zIndex:1 }}>{(project as any).emoji || "💻"}</span>
-                    {/* bottom fade */}
-                    <div style={{ position:"absolute", bottom:0, left:0, right:0, height:50, background:"linear-gradient(to top, var(--surface2), transparent)" }}/>
-                    {/* live / wip badge */}
-                    <div style={{ position:"absolute", top:10, right:10, display:"flex", alignItems:"center", gap:4, padding:"3px 8px", borderRadius:6, background: href ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.07)", border:`1px solid ${href ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.1)"}`, fontSize:9, fontWeight:700, color: href ? "#86efac" : "rgba(255,255,255,0.35)", letterSpacing:"0.06em", textTransform:"uppercase" }}>
-                      {href ? <><span style={{ width:5,height:5,borderRadius:"50%",background:"#4ade80",boxShadow:"0 0 5px #4ade80" }}/> Live</> : <><Lock /> Private</>}
+                  {/* Mockup Frame with Fancy Overlay textures */}
+                  <div className="proj-mockup-window" style={{ background: `linear-gradient(135deg, ${bg}, rgba(0,212,255,0.05))` }}>
+                    {/* Techno Grid Background Layer */}
+                    <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
+                    {/* Accent Neon Top glow bar */}
+                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${col}, transparent)` }} />
+
+                    {/* Render Target Project Image Screenshot from CDN */}
+                    <img
+                      src={screenshotSrc}
+                      alt={project.title}
+                      className="proj-screenshot-img"
+                    />
+
+                    {/* Gradient shade bottom masking blur */}
+                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 35, background: "linear-gradient(to top, var(--surface2), transparent)", zIndex: 2 }} />
+
+                    {/* Action Live status absolute overlay tag */}
+                    <div style={{ position: "absolute", top: 10, right: 10, zIndex: 3, display: "flex", alignItems: "center", gap: 4, padding: "3px 8px", borderRadius: 6, background: href ? "rgba(74,222,128,0.12)" : "rgba(255,255,255,0.07)", border: `1px solid ${href ? "rgba(74,222,128,0.25)" : "rgba(255,255,255,0.1)"}`, fontSize: 9, fontWeight: 700, color: href ? "#86efac" : "rgba(255,255,255,0.35)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                      {href ? <><span style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 5px #4ade80" }} /> Live</> : <><Lock /> Private</>}
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div style={{ padding:"14px 16px 16px" }}>
-                    <div style={{ display:"inline-flex", alignItems:"center", gap:5, padding:"3px 9px", borderRadius:6, background:`${col}18`, border:`1px solid ${col}30`, fontSize:10, fontWeight:700, color:col, letterSpacing:"0.06em", textTransform:"uppercase", marginBottom:8 }}>
+                  {/* Body Content Blocks */}
+                  <div style={{ padding: "14px 16px 16px" }}>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 9px", borderRadius: 6, background: `${col}18`, border: `1px solid ${col}30`, fontSize: 10, fontWeight: 700, color: col, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>
                       {project.category}
                     </div>
-                    <h4 style={{ fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, letterSpacing:"-0.01em", margin:"0 0 6px" }}>
+
+                    <h4 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14, letterSpacing: "-0.01em", margin: "0 0 6px" }}>
                       {project.title}
                     </h4>
-                    <p style={{ fontSize:12, color:"rgba(255,255,255,0.38)", lineHeight:1.6, margin:"0 0 10px" }}>
+
+                    <p style={{ fontSize: 12, color: "rgba(255,255,255,0.38)", lineHeight: 1.6, margin: "0 0 10px" }}>
                       {(project as any).description || ""}
                     </p>
-                    {/* Tech pills */}
-                    <div style={{ display:"flex", gap:5, flexWrap:"wrap", marginBottom:10 }}>
+
+                    {/* Tech stacks Pills row */}
+                    <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 10 }}>
                       {((project as any).tech || []).map((t: string) => (
-                        <span key={t} style={{ padding:"2px 8px", borderRadius:5, fontSize:10, fontWeight:600, background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.08)", color:"rgba(255,255,255,0.4)" }}>{t}</span>
+                        <span key={t} style={{ padding: "2px 8px", borderRadius: 5, fontSize: 10, fontWeight: 600, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }}>{t}</span>
                       ))}
                     </div>
-                    <span style={{ fontSize:12, color:col, display:"flex", alignItems:"center", gap:5 }}>
+
+                    <span style={{ fontSize: 12, color: col, display: "flex", alignItems: "center", gap: 5 }}>
                       {href ? <><ExternalLink /> View Project</> : "Coming Soon →"}
                     </span>
                   </div>
@@ -184,8 +234,8 @@ export default function ProjectsCard() {
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <p style={{ fontSize:11, color:"rgba(255,255,255,0.2)", marginTop:8, textAlign:"center" }}>
+        {/* Scroll hint indicator */}
+        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.2)", marginTop: 8, textAlign: "center" }}>
           ← Scroll to explore all projects →
         </p>
       </CardWrapper>
