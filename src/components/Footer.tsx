@@ -86,7 +86,7 @@ const LogoGraphic = () => (
 export default function Footer() {
   const GITHUB_URL = "https://github.com/abhijeetkumar7011-code";
   const LINKEDIN_URL = "https://www.linkedin.com/in/abhijeet-kumar-57b388232/";
-  const INSTAGRAM_URL = "https://instagram.com/_abhijeet_verma_";
+  const INSTAGRAM_URL = "https://instagram.com/u_know_its_abhijeet";
   const WHATSAPP_URL = "https://wa.me/919568854950?text=Hi%20Abhijeet,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!";
 
   return (
