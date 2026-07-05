@@ -5,7 +5,7 @@ export const projects = [
     emoji: "🏛️",
     description: "Portfolio & project management platform for architecture firms with 3D model previews.",
     tech: ["React", "Node.js", "MongoDB"],
-    image: "/projects/architect.jpg",
+    image: "/images/project/arch-studio.png",
     projectUrl: "https://arch-studio-frontend.vercel.app/",
   },
   {
@@ -14,8 +14,17 @@ export const projects = [
     emoji: "📊",
     description: "AI-powered CRM with lead scoring, pipeline tracking & email automation.",
     tech: ["Django", "Bootstrap", "Redis"],
-    image: "/projects/architecture.jpg",
+    image: "/images/project/build-tech.png",
     projectUrl: "https://architect-web-django.onrender.com",
+  },
+  {
+    title: "Rental Website",
+    category: "E-commerce",
+    emoji: "🏥",
+    description: "Full-featured rental website with items listings, booking & payment integration.",
+    tech: ["Next.js", "Supabase", "TailwindCSS"],
+    image: "/images/project/rentogram.png",
+    projectUrl: "https://rentogram-nu.vercel.app/",
   },
   {
     title: "IVF CRM",
@@ -23,7 +32,7 @@ export const projects = [
     emoji: "🏥",
     description: "Full-featured clinic management system with patient records, billing & scheduling.",
     tech: ["Django", "PostgreSQL", "React"],
-    image: "/projects/ivf.jpg",
+    image: "",
     projectUrl: "",
   },
   {
@@ -32,7 +41,7 @@ export const projects = [
     emoji: "🚦",
     description: "Real-time traffic analytics dashboard with live sensor data and heatmaps.",
     tech: ["React", "WebSocket", "D3.js"],
-    image: "/projects/trafik.jpg",
+    image: "",
     projectUrl: "",
   },
   {
@@ -41,7 +50,7 @@ export const projects = [
     emoji: "✨",
     description: "macOS-inspired interactive portfolio with draggable windows and app icons.",
     tech: ["Next.js", "Framer Motion", "TailwindCSS"],
-    image: "/projects/portfolio.jpg",
+    image: "",
     projectUrl: "",
   },
 ];

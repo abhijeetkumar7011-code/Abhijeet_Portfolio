@@ -27,6 +27,9 @@ const categoryBg: Record<string, string> = {
   "UI/UX": "rgba(244,114,182,0.12)",
 };
 
+// Local fallback images (used when a project has no image / broken link)
+const defaults = ["/images/project/default.png", "/images/project/default2.png"];
+
 export default function ProjectsCard() {
   const [active, setActive] = useState("All");
 
@@ -150,26 +153,13 @@ export default function ProjectsCard() {
         {/* Horizontal scroll track wrapper */}
         <div className="proj-scroll-wrap" id="proj-scroll">
           <div className="proj-track">
-            {filtered.map((project) => {
+            {filtered.map((project, index) => {
               const col = categoryColors[project.category] || "#a78bfa";
               const bg = categoryBg[project.category] || "rgba(124,77,255,0.15)";
-              const href = project.projectUrl?.trim() ? project.projectUrl : "";
+              const href = project.projectUrl?.trim() ? project.projectUrl : "/not-found";
 
-              // Premium Unsplash mockup placeholders synced dynamically with dark UI palettes
-              let screenshotSrc = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop";
-
-              if (project.category === "Architecture" || project.title.toLowerCase().includes("architect")) {
-                screenshotSrc = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop";
-              }
-              if (project.title.toLowerCase().includes("crm") || project.category === "CRM") {
-                screenshotSrc = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop";
-              } else if (project.title.toLowerCase().includes("ai") || project.title.toLowerCase().includes("writer")) {
-                screenshotSrc = "https://images.unsplash.com/photo-1618005198143-e5283b519a7f?q=80&w=600&auto=format&fit=crop";
-              } else if (project.category === "Healthcare" || project.title.toLowerCase().includes("crysta")) {
-                screenshotSrc = "https://images.unsplash.com/photo-1530026405186-ed1ea0ac7a63?q=80&w=600&auto=format&fit=crop";
-              } else if (project.category === "Analytics") {
-                screenshotSrc = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop";
-              }
+              // Local fallback image if project.image is missing/broken
+              const fallbackImg = defaults[index % defaults.length];
 
               return (
                 <a
@@ -187,11 +177,14 @@ export default function ProjectsCard() {
                     {/* Accent Neon Top glow bar */}
                     <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${col}, transparent)` }} />
 
-                    {/* Render Target Project Image Screenshot from CDN */}
+                    {/* Render actual project image, fallback to local default if missing/broken */}
                     <img
-                      src={screenshotSrc}
+                      src={project.image || fallbackImg}
                       alt={project.title}
                       className="proj-screenshot-img"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = fallbackImg;
+                      }}
                     />
 
                     {/* Gradient shade bottom masking blur */}
