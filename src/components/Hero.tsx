@@ -136,6 +136,30 @@ export default function Hero() {
           .hero-visual { grid-area: visual; display: flex !important; }
         }
 
+        /* Mobile-first hero-left spacing */
+        .hero-left {
+          position: relative;
+          overflow: hidden;
+          padding: 20px 20px;
+        }
+        @media (min-width: 640px) {
+          .hero-left { padding: 20px 38px; }
+        }
+
+        .hero-bio {
+          max-width: 100%;
+        }
+        @media (min-width: 640px) {
+          .hero-bio { max-width: 400px; }
+        }
+
+        .hero-cta-btn {
+          padding: 11px 22px;
+        }
+        @media (min-width: 640px) {
+          .hero-cta-btn { padding: 11px 26px; }
+        }
+
         .hero-name-grad {
           background: linear-gradient(135deg, #e0d7ff 0%, #a78bfa 35%, #60a5fa 65%, #f0abfc 100%);
           background-size: 300% 300%;
@@ -191,10 +215,10 @@ export default function Hero() {
         {/* ── LEFT ── */}
         <motion.div className="hero-left card"
           initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.65 }}
-          style={{ padding:"20px 38px", display:"flex", flexDirection:"column", justifyContent:"center", gap:"22px" }}
+          style={{ display:"flex", flexDirection:"column", justifyContent:"center", gap:"22px" }}
         >
-          <div style={{ position:"absolute", top:-50, left:-50, width:200, height:200, borderRadius:"50%", background:"rgba(124,77,255,0.1)", filter:"blur(70px)", pointerEvents:"none" }} />
-          <div style={{ position:"absolute", bottom:-30, right:-30, width:160, height:160, borderRadius:"50%", background:"rgba(0,212,255,0.07)", filter:"blur(55px)", pointerEvents:"none" }} />
+          <div style={{ position:"absolute", top:-50, left:-50, width:200, height:200, maxWidth:"60%", borderRadius:"50%", background:"rgba(124,77,255,0.1)", filter:"blur(70px)", pointerEvents:"none" }} />
+          <div style={{ position:"absolute", bottom:-30, right:-30, width:160, height:160, maxWidth:"50%", borderRadius:"50%", background:"rgba(0,212,255,0.07)", filter:"blur(55px)", pointerEvents:"none" }} />
 
           {/* Badge */}
           <motion.div initial={{ opacity:0, x:-16 }} animate={{ opacity:1, x:0 }} transition={{ delay:0.2 }}>
@@ -223,8 +247,8 @@ export default function Hero() {
           </motion.div>
 
           {/* Bio */}
-          <motion.p initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.6 }}
-            style={{ fontSize:"14px", lineHeight:1.75, color:"rgba(255,255,255,0.4)", maxWidth:"400px", margin:0 }}>
+          <motion.p className="hero-bio" initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.6 }}
+            style={{ fontSize:"14px", lineHeight:1.75, color:"rgba(255,255,255,0.4)", margin:0 }}>
             Transforming ideas into elegant, high-performance digital products. Specialized in full-stack development with a strong eye for design and UX.
           </motion.p>
 
@@ -232,14 +256,14 @@ export default function Hero() {
           <motion.div initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.7 }}
             style={{ display:"flex", flexWrap:"wrap", gap:"10px" }}>
             <a href="#projects" style={{ textDecoration:"none" }}>
-              <button className="btn-primary" style={{ fontSize:"13px", padding:"11px 26px", display:"flex", alignItems:"center", gap:"8px" }}>
+              <motion.button whileHover={{ scale:1.04 }} whileTap={{ scale:0.95 }} className="btn-primary hero-cta-btn" style={{ fontSize:"13px", display:"flex", alignItems:"center", gap:"8px" }}>
                 View My Work <IconArrowRight />
-              </button>
+              </motion.button>
             </a>
             <a href="/Abhijeet_Kumar_CV.pdf" download="Abhijeet_Kumar_CV.pdf" style={{ textDecoration:"none" }}>
-              <button className="btn-outline" style={{ fontSize:"13px", padding:"11px 26px", display:"flex", alignItems:"center", gap:"8px" }}>
+              <motion.button whileHover={{ scale:1.04 }} whileTap={{ scale:0.95 }} className="btn-outline hero-cta-btn" style={{ fontSize:"13px", display:"flex", alignItems:"center", gap:"8px" }}>
                 <IconDownload /> Download CV
-              </button>
+              </motion.button>
             </a>
           </motion.div>
 
