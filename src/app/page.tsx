@@ -9,7 +9,7 @@ export default function HomePage() {
     <main style={{ minHeight:"100vh", background:"var(--bg)", color:"var(--text)" }}>
       <MouseGlow />
       <Navbar />
-      <div style={{ maxWidth:"1280px", margin:"0 auto", padding:"0 24px" }}>
+      <div style={{ maxWidth:"1280px", margin:"0 auto", padding:"0 16px" }}>
         <div id="home">
           <Hero />
         </div>
