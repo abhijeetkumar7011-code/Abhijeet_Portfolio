@@ -1,10 +1,19 @@
 export const projects = [
   {
+    title: "Graficora",
+    category: "UI/UX",
+    emoji: "🎨",
+    description: "Creative design portfolio featuring logos, brand systems, 3D renders & motion graphics.",
+    tech: ["Branding", "3D Design", "Motion Graphics"],
+    image: "/images/project/graficora.png",
+    projectUrl: "https://graficora.vercel.app/",
+  },
+  {
     title: "Architect Studio",
     category: "Architecture",
     emoji: "🏛️",
     description: "Portfolio & project management platform for architecture firms with 3D model previews.",
-    tech: ["React", "Node.js", "MongoDB"],
+    tech: ["React", "MongoDB"],
     image: "/images/project/arch-studio.png",
     projectUrl: "https://arch-studio-frontend.vercel.app/",
   },

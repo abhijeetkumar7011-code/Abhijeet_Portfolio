@@ -6,8 +6,8 @@ const Briefcase = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="no
 const timeline = [
   { year:"Dec 2025 — Present",  title:"Full Stack Dev",         company:"Freelance",               tag:"Active",  desc:"CRM, AI tools" },
   { year:"Oct 2024 — Present",  title:"Backend Developer",      company:"Crysta IVF",              tag:"Active", desc:"REST APIs, Postgres" },
-  { year:"May 2025 — Oct 2025", title:"Frontend, Tech Support", company:"TrafikSol ITS Solutions", tag:"6 mos",   desc:"React, UI systems"  },
-  { year:"Nov 2022 — Mar 2025", title:"Non-Tech Experience",    company:"Recruitement Agencies",  tag:"1.4 yrs", desc:"US Healthcare Recruiter" },
+  { year:"May 2025 — Oct 2025", title:"Backend Developer", company:"TrafikSol ITS Solutions", tag:"6 mos", desc:"Django, REST APIs" },
+  // { year:"Nov 2022 — Mar 2025", title:"Non-Tech Experience",    company:"Recruitement Agencies",  tag:"1.4 yrs", desc:"US Healthcare Recruiter" },
 ];
 
 export default function ExperienceCard() {

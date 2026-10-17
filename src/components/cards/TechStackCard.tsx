@@ -19,12 +19,12 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M8.5 7.5v9l7-4.5-7-4.5z" fill="#000"/>
     </svg>
   ),
-  "Node.js": (
-    <svg viewBox="0 0 24 24" width="22" height="22">
-      <path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="#68d391" opacity="0.9"/>
-      <path d="M12 2L3 7l9 5 9-5-9-5z" fill="#4ade80"/>
-    </svg>
-  ),
+  // "Node.js": (
+  //   <svg viewBox="0 0 24 24" width="22" height="22">
+  //     <path d="M12 2L3 7v10l9 5 9-5V7L12 2z" fill="#68d391" opacity="0.9"/>
+  //     <path d="M12 2L3 7l9 5 9-5-9-5z" fill="#4ade80"/>
+  //   </svg>
+  // ),
   Python: (
     <svg viewBox="0 0 24 24" width="22" height="22">
       <path d="M12 2c-2.8 0-4.5 1.3-4.5 3v2h4.5v1H5.5C3.5 8 2 9.8 2 12s1.5 4 3.5 4h1v-2.5c0-1.5 1.2-2.5 3-2.5h5c1.5 0 2.5-1 2.5-2.5V5c0-1.7-1.7-3-5-3z" fill="#fde68a"/>
@@ -85,13 +85,21 @@ const icons: Record<string, React.ReactNode> = {
       <path d="M12 9.5 17.5 10" stroke="#f34f29" strokeWidth="1.8" strokeLinecap="round"/>
     </svg>
   ),
+  Docker: (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+      <path d="M2 13h19c-.6 4.2-3.5 7-8.5 7H9c-3.8 0-6-2.4-7-7Z" fill="#38bdf8" opacity="0.9"/>
+      <path d="M6 10h3v3H6zM10 10h3v3h-3zM10 6h3v3h-3zM14 10h3v3h-3z" fill="#38bdf8"/>
+      <path d="M19 11c1.2-1 2.4-1.1 3.5-.5-.2 1.3-1 2.2-2.4 2.6" stroke="#38bdf8" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
 };
 
 const techs = [
   { name:"React",      bg:"rgba(97,218,251,0.1)",  border:"rgba(97,218,251,0.2)"  },
   { name:"Next.js",    bg:"rgba(255,255,255,0.07)", border:"rgba(255,255,255,0.12)"},
-  { name:"Node.js",    bg:"rgba(104,211,145,0.1)",  border:"rgba(104,211,145,0.2)" },
+  // { name:"Node.js",    bg:"rgba(104,211,145,0.1)",  border:"rgba(104,211,145,0.2)" },
   { name:"Python",     bg:"rgba(253,230,138,0.08)", border:"rgba(253,230,138,0.18)"},
+  { name:"Docker",     bg:"rgba(56,189,248,0.1)",   border:"rgba(56,189,248,0.2)"  },
   { name:"PostgreSQL", bg:"rgba(96,165,250,0.1)",   border:"rgba(96,165,250,0.2)"  },
   { name:"AWS",        bg:"rgba(252,211,77,0.08)",  border:"rgba(252,211,77,0.18)" },
   { name:"TypeScript", bg:"rgba(1,112,198,0.1)",   border:"rgba(1,112,198,0.2)"  },

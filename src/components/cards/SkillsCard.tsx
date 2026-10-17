@@ -13,7 +13,7 @@ const skills = [
   // { name:"TypeScript", level:88, color:"#60a5fa" },
   { name:"AWS",        level:50, color:"#fcd34d" },
   { name:"Git",        level:60, color:"#f87171" },
-  // { name:"Docker",     level:78, color:"#38bdf8" },
+  { name:"Docker",     level:78, color:"#38bdf8" },
   { name:"Tailwind",   level:45, color:"#a5b4fc" },
   { name:"Bootstrap",  level:50, color:"#fbbf24" },
   { name:"Redis",      level:55, color:"#f87171" },
