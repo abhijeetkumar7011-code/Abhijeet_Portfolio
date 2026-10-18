@@ -59,6 +59,17 @@ export default function AboutCard() {
         <button className="ab-view-btn" style={{ marginTop:18 }} onClick={() => setOpen(true)}>
           View Full Profile <ExternalLink />
         </button>
+        <a
+          href="/about"
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 6, marginTop: 12, marginLeft: 14,
+            padding: "6px 14px", borderRadius: 10, fontSize: 12, fontWeight: 700, color: "#fff",
+            textDecoration: "none", background: "linear-gradient(135deg, #7c4dff, #00d4ff)",
+            boxShadow: "0 6px 20px rgba(124,77,255,0.35)",
+          }}
+        >
+          🚀 Enter the full story
+        </a>
       </CardWrapper>
 
       <AboutModal open={open} onClose={() => setOpen(false)} />

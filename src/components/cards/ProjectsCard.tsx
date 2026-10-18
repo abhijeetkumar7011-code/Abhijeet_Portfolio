@@ -53,7 +53,7 @@ export default function ProjectsCard() {
           min-width: 100%; width: 100%;
         }
         .proj-card-item {
-          width: 240px;
+          width: 230px;
           flex-shrink: 0;
           border-radius: 18px;
           overflow: hidden;
@@ -124,6 +124,17 @@ export default function ProjectsCard() {
           </div>
           {/* Scroll arrows */}
           <div style={{ display: "flex", gap: 6, alignItems: "center", marginTop: 4 }}>
+            <a
+              href="/projects"
+              style={{
+                padding: "6px 14px", borderRadius: 10, fontSize: 12, fontWeight: 700, color: "#fff",
+                textDecoration: "none", marginRight: 4, whiteSpace: "nowrap",
+                background: "linear-gradient(135deg, #7c4dff, #00d4ff)",
+                boxShadow: "0 6px 20px rgba(124,77,255,0.35)",
+              }}
+            >
+              🚗 Explore in 3D
+            </a>
             <button className="proj-scroll-btn" onClick={() => {
               const el = document.getElementById("proj-scroll");
               if (el) el.scrollBy({ left: -260, behavior: "smooth" });
