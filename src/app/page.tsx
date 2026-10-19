@@ -9,10 +9,11 @@ export default function HomePage() {
     <main style={{ minHeight:"100vh", background:"var(--bg)", color:"var(--text)" }}>
       <MouseGlow />
       <Navbar />
+      {/* full-bleed hero */}
+      <div id="home">
+        <Hero />
+      </div>
       <div style={{ maxWidth:"1280px", margin:"0 auto", padding:"0 16px" }}>
-        <div id="home">
-          <Hero />
-        </div>
         <div style={{ marginTop:"24px" }} id="bento">
           <BentoGrid />
         </div>

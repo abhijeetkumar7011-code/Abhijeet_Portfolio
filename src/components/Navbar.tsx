@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const links = [
   { label: "Home",       href: "#home" },
-  { label: "About",      href: "#about" },
+  { label: "About",      href: "/about" },
   { label: "Skills",     href: "#skills" },
-  { label: "Projects",   href: "#projects" },
+  { label: "Projects",   href: "/projects" },
   { label: "Services",   href: "#services" },
   { label: "Contact",    href: "#contact" },
 ];
@@ -164,6 +165,7 @@ export default function Navbar() {
   const [active, setActive]           = useState("Home");
   const [menuOpen, setMenuOpen]       = useState(false);
   const [hireMeOpen, setHireMeOpen]   = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => {
@@ -180,6 +182,8 @@ export default function Navbar() {
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof links[0]) => {
     e.preventDefault(); setActive(item.label); setMenuOpen(false);
+    // About & Projects are separate pages
+    if (!item.href.startsWith("#")) { router.push(item.href); return; }
     const el = document.getElementById(item.href.slice(1));
     if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
     else window.scrollTo({ top:0, behavior:"smooth" });

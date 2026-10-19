@@ -187,6 +187,14 @@ export default function AboutWarp() {
   const tiltRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [hasCutout, setHasCutout] = useState(true);
+
+  /* background-removed photo is optional: fall back to the framed original */
+  useEffect(() => {
+    const im = new window.Image();
+    im.onerror = () => setHasCutout(false);
+    im.src = "/profile-cutout.png";
+  }, []);
 
   const jumpTo = (i: number) => {
     const outer = outerRef.current;
@@ -447,9 +455,13 @@ export default function AboutWarp() {
                   <p className="aw-lead">Delhi-based developer turning ideas into fast, scalable and beautiful products.</p>
                   <div className="aw-pills">
                     <span>📍 Delhi, India</span>
+                    <span>💼 Backend Dev @ Crysta IVF</span>
+                    <span>⏳ 2+ yrs experience</span>
                     <span>🕒 IST · UTC+5:30</span>
-                    <span>⚡ Always learning</span>
                   </div>
+                  <button type="button" className="aw-journey-btn" onClick={() => jumpTo(2)}>
+                    🧭 See my experience journey <span>↓</span>
+                  </button>
                 </div>
 
                 <div className="aw-hero-3d" onPointerMove={onTilt} onPointerLeave={onTiltLeave}>
@@ -461,10 +473,15 @@ export default function AboutWarp() {
                         </div>
                       ))}
                     </div>
-                    <div ref={tiltRef} className="aw-photo">
+                    <div ref={tiltRef} className={`aw-photo ${hasCutout ? "cut" : "framed"}`}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/profile.png" alt="Abhijeet Verma" draggable={false} />
-                      <div ref={glareRef} className="aw-glare" />
+                      <img
+                        src={hasCutout ? "/profile-cutout.png" : "/profile.png"}
+                        alt="Abhijeet Verma"
+                        draggable={false}
+                        onError={() => setHasCutout(false)}
+                      />
+                      {!hasCutout && <div ref={glareRef} className="aw-glare" />}
                       <div className="aw-photo-tag">
                         <b>Abhijeet Verma</b>
                         <span>Full Stack · Backend</span>
@@ -505,7 +522,7 @@ export default function AboutWarp() {
                 panelRefs.current[2] = el;
               }} className="aw-panel">
               <div className="aw-wrap">
-                <p className="aw-kicker center">The journey</p>
+                <p className="aw-kicker center">Experience journey</p>
                 <h2 className="aw-h2">
                   Where I&apos;ve been <span className="aw-grad">building</span>
                 </h2>
@@ -719,20 +736,30 @@ const css = `
 .aw-pills span { font-size: 12.5px; font-weight: 600; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgba(255,255,255,.8); }
 
 /* hero */
-.aw-hero { width: 100%; max-width: 1120px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 24px; }
+.aw-hero { width: 100%; max-width: 1240px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 24px; }
 .aw-hero-text { text-align: left; }
-.aw-hero-3d { perspective: 1100px; display: flex; align-items: center; justify-content: center; height: min(520px, 62vh); }
-.aw-ring3d { position: relative; width: 0; height: 0; transform-style: preserve-3d; transform: rotateX(-13deg); }
+.aw-hero-3d { perspective: 1100px; display: flex; align-items: center; justify-content: center; height: min(760px, 86vh); }
+.aw-ring3d { --rr: 300px; --ps: 1; position: relative; width: 0; height: 0; transform-style: preserve-3d; transform: rotateX(-13deg) scale(var(--ps)); }
+@media (max-height: 820px) { .aw-ring3d { --ps: .82; } }
+@media (max-height: 720px) { .aw-ring3d { --ps: .68; } }
 .aw-ring-spin { position: absolute; left: 0; top: 0; transform-style: preserve-3d; animation: awSpinY 28s linear infinite; }
 @keyframes awSpinY { to { transform: rotateY(360deg); } }
-.aw-chip3d { position: absolute; left: 0; top: 0; transform-style: preserve-3d; transform: rotateY(var(--a)) translateZ(230px); }
+.aw-chip3d { position: absolute; left: 0; top: 0; transform-style: preserve-3d; transform: rotateY(var(--a)) translateZ(var(--rr)); }
 .aw-chip-in { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px; color: #fff;
   background: rgba(124,77,255,.28); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 8px 30px rgba(0,0,0,.4), 0 0 24px hsla(var(--h),90%,60%,.35);
   transform: translate(-50%,-50%) rotateY(calc(var(--a) * -1)); animation: awUnspinY 28s linear infinite; }
 @keyframes awUnspinY { from { transform: translate(-50%,-50%) rotateY(calc(var(--a) * -1)); } to { transform: translate(-50%,-50%) rotateY(calc(var(--a) * -1 - 360deg)); } }
-.aw-photo { position: absolute; left: -130px; top: -165px; width: 260px; height: 330px; border-radius: 30px; overflow: hidden; transform-style: preserve-3d; will-change: transform;
-  border: 1px solid rgba(255,255,255,.3); box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 70px hsla(var(--h),90%,60%,.4); }
-.aw-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+.aw-photo { position: absolute; left: -250px; top: -330px; width: 500px; height: 660px; transform-style: preserve-3d; will-change: transform; }
+.aw-photo img { position: relative; width: 100%; height: 100%; display: block; }
+/* background-removed version: person stands free, with a glowing disc behind */
+.aw-photo.cut::before { content: ""; position: absolute; left: 50%; bottom: 6%; width: 118%; aspect-ratio: 1; transform: translate(-50%, 0) translateZ(-70px); border-radius: 50%;
+  background: radial-gradient(circle, hsla(var(--h),95%,62%,.5), hsla(var(--h),95%,50%,.14) 50%, transparent 68%); border: 1px solid hsla(var(--h),95%,75%,.22); }
+.aw-photo.cut img { object-fit: contain; object-position: center bottom; filter: drop-shadow(0 24px 36px rgba(0,0,0,.55));
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 80%, transparent 100%); }
+.aw-photo.cut .aw-photo-tag { left: 50%; right: auto; bottom: 6px; min-width: 230px; align-items: center; text-align: center; transform: translateX(-50%) translateZ(40px); }
+/* fallback: original photo in a frame */
+.aw-photo.framed { left: -150px; top: -190px; width: 300px; height: 380px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(255,255,255,.3); box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 70px hsla(var(--h),90%,60%,.4); }
+.aw-photo.framed img { object-fit: cover; object-position: center 20%; }
 .aw-glare { position: absolute; inset: 0; pointer-events: none; }
 .aw-photo-tag { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 10px 14px; border-radius: 16px; display: flex; flex-direction: column; text-align: left;
   background: rgba(8,10,28,.55); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -749,7 +776,14 @@ const css = `
 
 /* journey */
 .aw-jr { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; perspective: 1300px; text-align: left; padding-top: 22px; }
-.aw-jr-line { position: absolute; left: 6%; right: 6%; top: 6px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); }
+.aw-jr-line { position: absolute; left: 6%; right: 6%; top: 6px; height: 2px; background: linear-gradient(90deg, rgba(74,222,128,.7), rgba(96,165,250,.7), rgba(167,139,250,.7)); box-shadow: 0 0 14px rgba(124,77,255,.5); }
+.aw-jr-line::after { content: ""; position: absolute; top: -3px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px #fff, 0 0 30px hsl(var(--h) 95% 65%); animation: awTravel 5s ease-in-out infinite alternate; }
+@keyframes awTravel { to { left: calc(100% - 8px); } }
+.aw-journey-btn { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 14px; border: 0; cursor: pointer; font-family: var(--font-body); font-size: 14px; font-weight: 700; color: #fff;
+  background: linear-gradient(135deg, #7c4dff, #00d4ff); box-shadow: 0 10px 30px rgba(124,77,255,.5); transition: transform .25s, box-shadow .25s; }
+.aw-journey-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(124,77,255,.75); }
+.aw-journey-btn span { display: inline-block; animation: awBob 1.4s ease-in-out infinite; }
+@keyframes awBob { 50% { transform: translateY(3px); } }
 .aw-jcard { position: relative; padding: 22px 22px 20px; border-radius: 24px; background: linear-gradient(150deg, rgba(255,255,255,.09), rgba(8,10,28,.72)); border: 1px solid rgba(255,255,255,.16);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 24px 70px rgba(0,0,0,.5), 0 0 40px color-mix(in srgb, var(--c) 18%, transparent); transition: transform .35s, border-color .35s, box-shadow .35s; }
 .aw-jcard.c0 { transform: rotateY(9deg); } .aw-jcard.c2 { transform: rotateY(-9deg); }
@@ -839,12 +873,13 @@ a.aw-glass:hover { background: rgba(255,255,255,.14); border-color: rgba(124,77,
   .aw-panel { padding: 70px 14px 50px; }
   .aw-hero { grid-template-columns: 1fr; gap: 0; text-align: center; }
   .aw-hero-text { text-align: center; order: 2; }
-  .aw-hero-3d { order: 1; height: 300px; }
+  .aw-hero-3d { order: 1; height: 360px; }
   .aw-kicker { margin-bottom: 8px; }
   .aw-pills { justify-content: center; }
-  .aw-pills span:nth-child(3) { display: none; }
+  .aw-journey-btn { margin-top: 12px; padding: 10px 18px; font-size: 13px; }
+  .aw-pills span:nth-child(n+3) { display: none; }
   .aw-lead { margin-left: auto; margin-right: auto; font-size: 13.5px; margin-bottom: 14px; }
-  .aw-ring3d { transform: rotateX(-13deg) scale(.62); }
+  .aw-ring3d { --ps: .5; }
   .aw-role { margin-bottom: 8px; }
   .aw-jr { grid-template-columns: 1fr; gap: 10px; padding-top: 0; perspective: none; }
   .aw-jr-line, .aw-jnode { display: none; }
