@@ -18,15 +18,6 @@ export const projects = [
     projectUrl: "https://arch-studio-frontend.vercel.app/",
   },
   {
-    title: "Build Tech",
-    category: "Architecture",
-    emoji: "📊",
-    description: "AI-powered CRM with lead scoring, pipeline tracking & email automation.",
-    tech: ["Django", "Bootstrap", "Redis"],
-    image: "/images/project/build-tech.png",
-    projectUrl: "https://architect-web-django.onrender.com",
-  },
-  {
     title: "Rental Website",
     category: "E-commerce",
     emoji: "🏥",
@@ -34,6 +25,15 @@ export const projects = [
     tech: ["Next.js", "Supabase", "TailwindCSS"],
     image: "/images/project/rentogram.png",
     projectUrl: "https://rentogram-nu.vercel.app/",
+  }, 
+  {
+    title: "Build Tech",
+    category: "Architecture",
+    emoji: "📊",
+    description: "AI-powered CRM with lead scoring, pipeline tracking & email automation.",
+    tech: ["Django", "Bootstrap", "Redis"],
+    image: "/images/project/build-tech.png",
+    projectUrl: "https://architect-web-django.onrender.com",
   },
   {
     title: "IVF CRM",

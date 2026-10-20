@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 
 /* ───────────────────────── Data ───────────────────────── */
-const ROLES = ["Full Stack Developer", "React & Next.js Developer", "Backend Developer", "UI Craftsman", "Tech Enthusiast", "Django Developer"];
+const ROLES = ["Full Stack Developer", "React & Next.js Developer", "Backend Developer", "UI Craftsman", "Tech Enthusiast"];
 
 const STATS = [
   { value: 2, suffix: "+", label: "Years Exp.", color: "#a78bfa" },
