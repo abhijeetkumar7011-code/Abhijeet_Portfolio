@@ -9,7 +9,7 @@ const CHAPTERS = ["Hello", "Story", "Journey", "Stack", "Numbers", "Contact"];
 const NC = CHAPTERS.length;
 const HUES = [265, 192, 330, 38, 150, 275]; // nebula colour per chapter
 
-const ROLES = ["Full Stack Developer", "Django Backend Engineer", "Next.js Builder", "API Architect"];
+const ROLES = ["Full Stack Developer", "Backend Engineer", "Next.js Builder", "API Architect"];
 
 const HERO_CHIPS = ["Next.js", "Django", "React", "Python", "PostgreSQL", "Supabase", "TypeScript", "REST APIs"];
 
