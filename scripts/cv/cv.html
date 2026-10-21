@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Abhijeet Verma — Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+@font-face { font-family: "Syne"; font-weight: 700; src: url("assets/fonts/syne-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Syne"; font-weight: 800; src: url("assets/fonts/syne-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 400; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 500; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 600; src: url("assets/fonts/dm-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Sans"; font-weight: 700; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); }
+
+@page { size: 210mm 297mm; margin: 0; }
+:root {
+  --bg: #03050f; --text: #f0f0ff; --muted: #8b90b0;
+  --violet: #7c4dff; --cyan: #00d4ff; --pink: #ff3cac;
+  --lav: #c4b5fd; --green: #4ade80; --blue: #60a5fa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body { width: 794px; height: 1123px; overflow: hidden; position: relative; color: var(--text);
+  font-family: "DM Sans", system-ui, sans-serif; font-size: 10px; line-height: 1.5;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+a { color: inherit; text-decoration: none; }
+
+/* ───────── cosmic background ───────── */
+.bg { position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(520px 420px at 8% -4%, rgba(124,77,255,.55), transparent 70%),
+    radial-gradient(480px 380px at 104% 22%, rgba(255,60,172,.22), transparent 70%),
+    radial-gradient(520px 420px at 96% 104%, rgba(0,212,255,.30), transparent 70%),
+    radial-gradient(420px 320px at -6% 78%, rgba(124,77,255,.28), transparent 70%),
+    var(--bg); }
+.grid { position: absolute; inset: 0; z-index: 0; opacity: .5;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 78%); }
+.stars { position: absolute; inset: 0; z-index: 0; }
+
+/* ───────── layout ───────── */
+.page { position: relative; z-index: 2; height: 1123px; display: grid; grid-template-columns: 238px 1fr; gap: 0; }
+
+/* ───────── sidebar ───────── */
+.side { position: relative; padding: 0 0 20px; display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(14,10,40,.78), rgba(5,8,22,.86));
+  border-right: 1px solid rgba(255,255,255,.1); }
+.side::after { content: ""; position: absolute; top: 0; bottom: 0; right: -1px; width: 2px;
+  background: linear-gradient(180deg, var(--violet), var(--cyan) 55%, var(--pink)); opacity: .9; }
+
+.photo { position: relative; height: 268px; overflow: hidden; }
+.photo svg.orbit { position: absolute; left: 50%; top: 18px; width: 214px; height: 214px; margin-left: -107px; }
+.disc { position: absolute; left: 50%; top: 36px; width: 176px; height: 176px; margin-left: -88px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, rgba(124,77,255,.95), rgba(60,30,160,.75) 55%, rgba(0,212,255,.35) 100%);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.22), 0 0 60px rgba(124,77,255,.75); }
+.photo img { position: absolute; left: 50%; top: 12px; width: 178px; margin-left: -89px; display: block;
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); }
+.photo .open { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); white-space: nowrap; z-index: 3;
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: #86efac; background: rgba(5,12,20,.92); border: 1px solid rgba(74,222,128,.45); box-shadow: 0 0 18px rgba(74,222,128,.3); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+.sblock { padding: 0 20px; margin-top: 14px; }
+.h { display: flex; align-items: center; gap: 8px; font-family: "Syne", sans-serif; font-weight: 800; font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: #e9e3ff; margin-bottom: 8px; }
+.h::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+.h::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,.18), transparent); }
+
+.contact a, .contact div { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; font-size: 9px; color: rgba(255,255,255,.82); word-break: break-word; }
+.ci { flex: 0 0 20px; width: 20px; height: 20px; border-radius: 7px; display: flex; align-items: center; justify-content: center;
+  background: rgba(124,77,255,.2); border: 1px solid rgba(167,139,250,.4); }
+.ci svg { width: 11px; height: 11px; stroke: #c4b5fd; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.sk { margin-bottom: 7px; }
+.sk .lab { font-size: 7.8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { padding: 2.5px 8px; border-radius: 999px; font-size: 8.6px; font-weight: 600; color: #ece8ff;
+  background: linear-gradient(135deg, rgba(124,77,255,.28), rgba(0,212,255,.12)); border: 1px solid rgba(167,139,250,.38); }
+.chip.b { background: linear-gradient(135deg, rgba(96,165,250,.26), rgba(0,212,255,.1)); border-color: rgba(96,165,250,.4); }
+.chip.g { background: linear-gradient(135deg, rgba(52,211,153,.24), rgba(74,222,128,.08)); border-color: rgba(52,211,153,.4); }
+.chip.o { background: linear-gradient(135deg, rgba(251,191,36,.22), rgba(249,115,22,.08)); border-color: rgba(251,191,36,.4); }
+
+.edu .row { margin-bottom: 7px; padding-left: 10px; border-left: 2px solid; border-image: linear-gradient(180deg, var(--violet), var(--cyan)) 1; }
+.edu b { display: block; font-size: 9.4px; font-weight: 700; color: #fff; line-height: 1.35; }
+.edu span { font-size: 8.4px; color: var(--muted); }
+
+
+.wd .r { display: flex; gap: 9px; align-items: center; margin-bottom: 6px; }
+.wd .ic { flex: 0 0 22px; width: 22px; height: 22px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); }
+.wd b { display: block; font-size: 9.2px; font-weight: 700; color: #fff; line-height: 1.25; }
+.wd span { display: block; font-size: 8px; color: var(--muted); line-height: 1.3; }
+
+.qr { margin-top: auto; padding: 0 20px; display: flex; align-items: center; gap: 11px; }
+.qrbox { width: 66px; height: 66px; padding: 5px; border-radius: 12px; background: #fff; box-shadow: 0 0 0 1px rgba(255,255,255,.4), 0 0 28px rgba(0,212,255,.55); flex: 0 0 66px; }
+.qrbox svg { width: 100%; height: 100%; display: block; }
+.qr p { font-size: 8.6px; line-height: 1.45; color: rgba(255,255,255,.7); }
+.qr b { display: block; font-family: "Syne", sans-serif; font-size: 10.5px; color: #fff; margin-bottom: 2px; }
+
+/* ───────── main ───────── */
+.main { padding: 28px 30px 20px 28px; display: flex; flex-direction: column; min-width: 0; }
+.eyebrow { display: inline-flex; align-items: center; gap: 7px; font-size: 8.4px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #67e8f9; }
+.name { font-family: "Syne", sans-serif; font-weight: 800; text-transform: uppercase; line-height: .86; letter-spacing: -.04em; margin: 8px 0 8px; }
+.name .a { display: block; height: 54px; overflow: visible; }
+.name .a text, .foot svg text { font-family: "Syne", sans-serif; font-weight: 800; }
+.name .b { display: block; font-size: 62px; color: transparent; -webkit-text-stroke: 1.4px rgba(196,181,253,.9); }
+.role { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: "Syne", sans-serif; font-weight: 700; font-size: 13px; color: var(--lav); }
+.role i { font-style: normal; color: rgba(255,255,255,.28); }
+.role em { font-style: normal; color: #67e8f9; }
+
+.glass { background: linear-gradient(150deg, rgba(255,255,255,.085), rgba(8,10,28,.74)); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; }
+.sum { margin-top: 12px; padding: 11px 14px; font-size: 9.7px; line-height: 1.62; color: rgba(255,255,255,.8); position: relative; overflow: hidden; }
+.sum::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--violet), var(--cyan)); }
+.sum b { color: #c4b5fd; font-weight: 700; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin-top: 11px; }
+.stat { position: relative; overflow: hidden; padding: 8px 10px 7px; border-radius: 12px; background: rgba(8,10,30,.78); border: 1px solid rgba(255,255,255,.13); }
+.stat::after { content: ""; position: absolute; right: -14px; bottom: -14px; width: 48px; height: 48px; border-radius: 50%; background: var(--c); opacity: .28; }
+.stat strong { display: block; font-family: "Syne", sans-serif; font-weight: 800; font-size: 20px; line-height: 1; color: var(--c); }
+.stat span { display: block; margin-top: 3px; font-size: 7.6px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); }
+
+.sec { margin-top: 15px; }
+.sec .h { margin-bottom: 8px; }
+
+.tl { position: relative; padding-left: 20px; }
+.tl::before { content: ""; position: absolute; left: 5px; top: 5px; bottom: 6px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, var(--green), var(--blue) 50%, #a78bfa); box-shadow: 0 0 10px rgba(124,77,255,.6); }
+.job { position: relative; margin-bottom: 10px; padding: 9px 12px 9px; border-radius: 12px; background: linear-gradient(150deg, rgba(255,255,255,.07), rgba(8,10,28,.72)); border: 1px solid rgba(255,255,255,.12); }
+.job:last-child { margin-bottom: 0; }
+.job::before { content: ""; position: absolute; left: -20px; top: 12px; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 3px var(--bg), 0 0 14px var(--c); }
+.jt { display: block; }
+.jt h3 { font-family: "Syne", sans-serif; font-weight: 800; font-size: 11.6px; letter-spacing: -.01em; }
+.jt h3 span { color: var(--c); }
+.per { display: flex; align-items: center; gap: 7px; margin-top: 2px; font-size: 8.2px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.tag { display: inline-block; font-style: normal; padding: 1px 7px; border-radius: 999px; font-size: 7.4px; font-weight: 800; letter-spacing: .09em; color: var(--c); border: 1px solid var(--c); background: rgba(255,255,255,.04); vertical-align: 1px; }
+.job ul { list-style: none; margin-top: 4px; }
+.job li { position: relative; padding-left: 11px; font-size: 9.1px; line-height: 1.5; color: rgba(255,255,255,.76); margin-bottom: 1px; }
+.job li::before { content: "▸"; position: absolute; left: 0; color: var(--c); font-size: 8px; top: 0; }
+
+.pg { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.pc { position: relative; overflow: hidden; padding: 9px 10px 9px 12px; border-radius: 12px; background: linear-gradient(150deg, rgba(255,255,255,.075), rgba(8,10,28,.76)); border: 1px solid rgba(255,255,255,.12); }
+.pc::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c); box-shadow: 0 0 12px var(--c); }
+.pc:last-child { grid-column: span 2; }
+.pt { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.pt h4 { font-family: "Syne", sans-serif; font-weight: 800; font-size: 9.2px; letter-spacing: -.01em; white-space: nowrap; }
+.pt h4 u { text-decoration: none; margin-right: 4px; }
+.cat { flex: none; padding: 1px 6px; border-radius: 999px; font-size: 6.6px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--c); border: 1px solid var(--c); background: rgba(255,255,255,.04); }
+.pc p { margin-top: 3px; font-size: 8.4px; line-height: 1.45; color: rgba(255,255,255,.66); }
+.pf { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 4px; }
+.pf .t { font-size: 7.8px; font-weight: 600; color: rgba(255,255,255,.52); }
+.pf .l { flex: none; font-size: 7.8px; font-weight: 700; color: var(--c); }
+.pf .l.priv { color: var(--muted); font-weight: 600; }
+
+.foot { margin-top: auto; padding-top: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 8px; color: var(--muted); letter-spacing: .04em; }
+.foot svg { display: block; width: 120px; height: 14px; overflow: visible; }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <svg class="stars" viewBox="0 0 794 1123" aria-hidden="true">
+    <g fill="#fff">
+      <circle cx="262" cy="30" r="1.1" opacity=".7"/><circle cx="318" cy="64" r=".9" opacity=".5"/><circle cx="402" cy="22" r="1.3" opacity=".8"/>
+      <circle cx="488" cy="48" r=".8" opacity=".5"/><circle cx="552" cy="18" r="1" opacity=".7"/><circle cx="640" cy="52" r="1.2" opacity=".6"/>
+      <circle cx="716" cy="30" r=".9" opacity=".7"/><circle cx="768" cy="86" r="1.1" opacity=".6"/><circle cx="288" cy="118" r=".8" opacity=".4"/>
+      <circle cx="744" cy="170" r="1" opacity=".5"/><circle cx="22" cy="300" r=".9" opacity=".5"/><circle cx="772" cy="990" r="1.1" opacity=".6"/>
+      <circle cx="640" cy="1088" r=".9" opacity=".5"/><circle cx="370" cy="1100" r="1" opacity=".5"/><circle cx="14" cy="1040" r="1.2" opacity=".6"/>
+    </g>
+  </svg>
+
+  <div class="page">
+    <!-- ═════════ SIDEBAR ═════════ -->
+    <aside class="side">
+      <div class="photo">
+        <svg class="orbit" viewBox="0 0 214 214" aria-hidden="true">
+          <circle cx="107" cy="107" r="104" fill="none" stroke="rgba(167,139,250,.5)" stroke-width="1" stroke-dasharray="3 6"/>
+          <circle cx="107" cy="107" r="96" fill="none" stroke="rgba(0,212,255,.28)" stroke-width="1"/>
+          <circle cx="24" cy="48" r="3.4" fill="#00d4ff"/><circle cx="24" cy="48" r="7" fill="#00d4ff" opacity=".25"/>
+          <circle cx="196" cy="70" r="3" fill="#ff3cac"/><circle cx="196" cy="70" r="6.5" fill="#ff3cac" opacity=".25"/>
+          <circle cx="170" cy="182" r="2.8" fill="#4ade80"/><circle cx="170" cy="182" r="6" fill="#4ade80" opacity=".25"/>
+        </svg>
+        <div class="disc"></div>
+        <img src="assets/photo.png" alt="Abhijeet Verma" />
+        <span class="open"><i class="dot"></i> Open to opportunities</span>
+      </div>
+
+      <div class="sblock contact">
+        <div class="h">Contact</div>
+        <a href="mailto:abhijeetkumar7011@gmail.com"><span class="ci"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>abhijeetkumar7011@gmail.com</a>
+        <div><span class="ci"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>Delhi, India · IST (UTC+5:30)</div>
+        <a href="https://abhijeet-portfolio-woad.vercel.app"><span class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>abhijeet-portfolio-woad.vercel.app</a>
+        <a href="https://github.com/abhijeetkumar7011-code"><span class="ci"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>github.com/abhijeetkumar7011-code</a>
+        <a href="https://www.linkedin.com/in/abhijeet-kumar-57b388232/"><span class="ci"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>in/abhijeet-kumar-57b388232</a>
+      </div>
+
+      <div class="sblock">
+        <div class="h">Tech Stack</div>
+        <div class="sk"><div class="lab">Frontend</div><div class="chips">
+          <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML / CSS</span><span class="chip">Tailwind CSS</span><span class="chip">Bootstrap</span></div></div>
+        <div class="sk"><div class="lab">Backend</div><div class="chips">
+          <span class="chip b">Python</span><span class="chip b">Django</span><span class="chip b">REST APIs</span><span class="chip b">Celery</span></div></div>
+        <div class="sk"><div class="lab">Data &amp; Cloud</div><div class="chips">
+          <span class="chip g">PostgreSQL</span><span class="chip g">Redis</span><span class="chip g">Supabase</span><span class="chip g">AWS</span></div></div>
+        <div class="sk"><div class="lab">Tools</div><div class="chips">
+          <span class="chip o">Git</span><span class="chip o">Docker</span></div></div>
+      </div>
+
+      <div class="sblock edu">
+        <div class="h">Education</div>
+        <div class="row"><b>B.Tech</b><span>Rajshree Institute of Management &amp; Technology, Bareilly · 2018 — 2022</span></div>
+        <div class="row"><b>Self-taught full stack developer</b><span>Docs, open source, YouTube, Coding Ninjas · 2022 — ongoing</span></div>
+      </div>
+
+      <div class="sblock wd">
+        <div class="h">What I do</div>
+        <div class="r"><span class="ic">🌐</span><div><b>Web Development</b><span>Full-stack apps with Next.js &amp; React</span></div></div>
+        <div class="r"><span class="ic">🛠️</span><div><b>Backend APIs</b><span>Scalable REST services</span></div></div>
+        <div class="r"><span class="ic">🎨</span><div><b>UI Engineering</b><span>Pixel-perfect, animated interfaces</span></div></div>
+        <div class="r"><span class="ic">☁️</span><div><b>Cloud Deployment</b><span>AWS, Vercel, Docker pipelines</span></div></div>
+      </div>
+
+      <div class="qr">
+        <a class="qrbox" href="https://abhijeet-portfolio-woad.vercel.app"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h29v29H0z"/><path stroke="#1a0b45" d="M0 0.5h7m7 0h2m1 0h3m2 0h7M0 1.5h1m5 0h1m4 0h2m1 0h2m2 0h1m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m2 0h1m4 0h4m1 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m3 0h2m2 0h2m2 0h2m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m3 0h2m2 0h5m3 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h2m1 0h1m1 0h1m2 0h3m1 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 7.5h1m1 0h2m3 0h2m2 0h1M0 8.5h1m2 0h1m1 0h2m1 0h4m1 0h1m6 0h2m1 0h1M2 9.5h1m2 0h1m1 0h2m1 0h2m4 0h1m3 0h3m2 0h1m2 0h1M1 10.5h1m2 0h3m1 0h3m5 0h1m1 0h3m1 0h6M0 11.5h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h5m1 0h1m1 0h3m1 0h1m1 0h2M2 12.5h1m2 0h3m3 0h3m2 0h2m3 0h2m2 0h1m1 0h2M0 13.5h5m3 0h2m1 0h1m7 0h3M0 14.5h2m1 0h1m1 0h3m3 0h1m4 0h1m3 0h9M0 15.5h1m3 0h1m2 0h2m1 0h2m1 0h2m1 0h3m1 0h1m2 0h3m1 0h1M0 16.5h1m2 0h4m1 0h1m7 0h3m1 0h2m5 0h1M2 17.5h1m1 0h1m3 0h4m1 0h1m2 0h2m3 0h3m1 0h1m2 0h1M0 18.5h1m2 0h5m4 0h1m1 0h1m1 0h1m3 0h3m4 0h2M3 19.5h2m2 0h1m1 0h2m1 0h1m4 0h2m3 0h2m3 0h2M0 20.5h1m1 0h1m3 0h1m2 0h1m2 0h5m3 0h5m1 0h1M8 21.5h2m1 0h1m1 0h2m2 0h2m1 0h1m3 0h1m1 0h3M0 22.5h7m2 0h2m2 0h2m2 0h1m2 0h1m1 0h1m1 0h1m2 0h1M0 23.5h1m5 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h1m3 0h5M0 24.5h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h2m2 0h5M0 25.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m5 0h1m2 0h6M0 26.5h1m1 0h3m1 0h1m2 0h3m2 0h1m4 0h3m2 0h3m1 0h1M0 27.5h1m5 0h1m2 0h1m1 0h2m1 0h2m1 0h4m6 0h1M0 28.5h7m1 0h2m3 0h2m2 0h1m1 0h2m3 0h2m1 0h1"/></svg>
+</a>
+        <p><b>See it live ↗</b>Scan for the interactive portfolio &amp; 3D project road.</p>
+      </div>
+    </aside>
+
+    <!-- ═════════ MAIN ═════════ -->
+    <main class="main">
+      <div class="eyebrow"><i class="dot" style="background:#00d4ff;box-shadow:0 0 8px #00d4ff"></i> Resume · 2026</div>
+      <h1 class="name" aria-label="Abhijeet Verma">
+        <svg class="a" width="520" height="54" viewBox="0 0 520 54" role="img" aria-hidden="true">
+          <defs><linearGradient id="gName" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ffffff"/><stop offset=".22" stop-color="#a5f3fc"/><stop offset=".52" stop-color="#818cf8"/><stop offset=".82" stop-color="#f472b6"/><stop offset="1" stop-color="#fb923c"/>
+          </linearGradient></defs>
+          <text x="0" y="50" font-size="62" letter-spacing="-2.5" fill="url(#gName)">ABHIJEET</text>
+        </svg>
+        <span class="b">Verma</span>
+      </h1>
+      <div class="role">Full Stack Developer <i>/</i> <em>Backend Specialist</em> <i>/</i> Delhi, India</div>
+
+      <div class="glass sum">
+        Full Stack Developer with <b>2+ years</b> of experience building scalable web applications, RESTful APIs and modern UI systems. Currently a <b>Backend Developer at Crysta IVF</b> and freelancing on SaaS products. Proficient in <b>React, Next.js, Django, Python and PostgreSQL</b>. Passionate about clean architecture, performance optimization and delivering premium user experiences.
+      </div>
+
+      <div class="stats">
+        <div class="stat" style="--c:#a78bfa"><strong>2+</strong><span>Years building</span></div>
+        <div class="stat" style="--c:#60a5fa"><strong>7</strong><span>Projects</span></div>
+        <div class="stat" style="--c:#34d399"><strong>3</strong><span>Roles held</span></div>
+        <div class="stat" style="--c:#f472b6"><strong>13+</strong><span>Technologies</span></div>
+      </div>
+
+      <section class="sec">
+        <div class="h">Experience</div>
+        <div class="tl">
+          <div class="job" style="--c:#4ade80">
+            <div class="jt"><h3>Backend Developer · <span>Crysta IVF</span></h3><div class="per"><i class="tag">ACTIVE</i>Oct 2024 — Present</div></div>
+            <ul>
+              <li>Building and maintaining REST APIs and integrations in Django.</li>
+              <li>PostgreSQL-backed systems for a clinic platform, from database design to deployment.</li>
+            </ul>
+          </div>
+          <div class="job" style="--c:#60a5fa">
+            <div class="jt"><h3>Backend Developer · <span>TrafikSol ITS Solutions</span></h3><div class="per"><i class="tag">6 MOS</i>May 2025 — Oct 2025</div></div>
+            <ul>
+              <li>Built Django services and REST APIs for intelligent traffic solutions.</li>
+            </ul>
+          </div>
+          <div class="job" style="--c:#a78bfa">
+            <div class="jt"><h3>Full Stack Developer · <span>Freelance</span></h3><div class="per"><i class="tag">ACTIVE</i>Dec 2025 — Present</div></div>
+            <ul>
+              <li>End-to-end products for clients: CRM systems, AI tools and modern web apps.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="h">Selected Projects</div>
+        <div class="pg">
+          <div class="pc" style="--c:#f472b6">
+            <div class="pt"><h4><u>🎨</u>Graficora</h4><span class="cat">UI/UX</span></div>
+            <p>Creative design portfolio featuring logos, brand systems, 3D renders &amp; motion graphics.</p>
+            <div class="pf"><span class="t">Branding · 3D Design · Motion Graphics</span><a class="l" href="https://graficora.vercel.app/">● Live ↗</a></div>
+          </div>
+          <div class="pc" style="--c:#a78bfa">
+            <div class="pt"><h4><u>🏛️</u>Architect Studio</h4><span class="cat">Architecture</span></div>
+            <p>Portfolio &amp; project management platform for architecture firms with 3D model previews.</p>
+            <div class="pf"><span class="t">React · MongoDB</span><a class="l" href="https://arch-studio-frontend.vercel.app/">● Live ↗</a></div>
+          </div>
+          <div class="pc" style="--c:#a78bfa">
+            <div class="pt"><h4><u>📊</u>Build Tech</h4><span class="cat">Architecture</span></div>
+            <p>AI-powered CRM with lead scoring, pipeline tracking &amp; email automation.</p>
+            <div class="pf"><span class="t">Django · Bootstrap · Redis</span><a class="l" href="https://architect-web-django.onrender.com">● Live ↗</a></div>
+          </div>
+          <div class="pc" style="--c:#fbbf24">
+            <div class="pt"><h4><u>🛒</u>Rental Website</h4><span class="cat">E-commerce</span></div>
+            <p>Full-featured rental website with item listings, booking &amp; payment integration.</p>
+            <div class="pf"><span class="t">Next.js · Supabase · TailwindCSS</span><a class="l" href="https://rentogram-nu.vercel.app/">● Live ↗</a></div>
+          </div>
+          <div class="pc" style="--c:#34d399">
+            <div class="pt"><h4><u>🏥</u>IVF CRM</h4><span class="cat">Healthcare</span></div>
+            <p>Full-featured clinic management system with patient records, billing &amp; scheduling.</p>
+            <div class="pf"><span class="t">Django · PostgreSQL · React</span><span class="l priv">🔒 Private</span></div>
+          </div>
+          <div class="pc" style="--c:#f97316">
+            <div class="pt"><h4><u>🚦</u>TrafikSol Dashboard</h4><span class="cat">Analytics</span></div>
+            <p>Real-time traffic analytics dashboard with live sensor data and heatmaps.</p>
+            <div class="pf"><span class="t">React · WebSocket · D3.js</span><span class="l priv">🔒 Private</span></div>
+          </div>
+          <div class="pc" style="--c:#f472b6">
+            <div class="pt"><h4><u>✨</u>Portfolio OS</h4><span class="cat">UI/UX</span></div>
+            <p>macOS-inspired interactive portfolio with draggable windows and app icons.</p>
+            <div class="pf"><span class="t">Next.js · Framer Motion · TailwindCSS</span><span class="l priv">🔒 Private</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot"><span>Open to opportunities · Available for freelance</span><svg viewBox="0 0 120 14" aria-label="Abhijeet Verma" role="img">
+        <defs><linearGradient id="gFoot" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c4dff"/><stop offset=".55" stop-color="#00d4ff"/><stop offset="1" stop-color="#ff3cac"/></linearGradient></defs>
+        <text x="120" y="11" text-anchor="end" font-size="9" letter-spacing="1.6" fill="url(#gFoot)">ABHIJEET VERMA</text>
+      </svg></div>
+    </main>
+  </div>
+</body>
+</html>

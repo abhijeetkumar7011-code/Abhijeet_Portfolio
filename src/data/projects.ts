@@ -9,7 +9,7 @@ export const projects = [
     projectUrl: "https://graficora.vercel.app/",
   },
   {
-    title: "Architect Studio",
+    title: "Arch Studio",
     category: "Architecture",
     emoji: "🏛️",
     description: "Portfolio & project management platform for architecture firms with 3D model previews.",
@@ -18,7 +18,7 @@ export const projects = [
     projectUrl: "https://arch-studio-frontend.vercel.app/",
   },
   {
-    title: "Rental Website",
+    title: "Rentogram",
     category: "E-commerce",
     emoji: "🏥",
     description: "Full-featured rental website with items listings, booking & payment integration.",
