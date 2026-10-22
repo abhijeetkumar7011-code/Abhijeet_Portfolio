@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardWrapper from "../CardWrapper";
 
 const Github    = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>;
@@ -19,6 +19,15 @@ const Mail2     = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="no
 const Msg       = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
 const Check     = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>;
 
+const WhatsApp = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+);
+const ArrowUpRight = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>;
+
+const WA_URL = "https://wa.me/919568854950?text=Hi%20Abhijeet,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!";
+const EMAIL  = "abhijeetkumar7011@gmail.com";
+const WA_COLOR = "#25d366";
+
 const socials = [
   { icon:<Github />,   label:"GitHub",   href:"https://github.com/abhijeetkumar7011-code",    color:"rgba(255,255,255,0.7)" },
   { icon:<Linkedin />, label:"LinkedIn", href:"https://www.linkedin.com/in/abhijeet-kumar-57b388232/",  color:"#60a5fa" },
@@ -34,6 +43,15 @@ export default function ContactCard() {
   const [loading, setLoading] = useState(false);
   const [form, setForm]       = useState({ name:"", email:"", service:"Web Development", message:"" });
   const [errors, setErrors]   = useState<Record<string,string>>({});
+  const [time, setTime]       = useState("");
+
+  // live Delhi time (set after mount to avoid hydration mismatch)
+  useEffect(() => {
+    const tick = () => setTime(new Date().toLocaleTimeString("en-IN", { timeZone:"Asia/Kolkata", hour:"2-digit", minute:"2-digit", hour12:true }));
+    tick();
+    const id = setInterval(tick, 30000);
+    return () => clearInterval(id);
+  }, []);
 
   const validate = () => {
     const e: Record<string,string> = {};
@@ -50,7 +68,7 @@ export default function ContactCard() {
     setErrors({}); setLoading(true);
     // Formspree endpoint
     try {
-      await fetch("https://formspree.io/f/xwpkqvqo", {
+      const res = await fetch("https://formspree.io/f/xwpkqvqo", {
         method:"POST",
         headers:{ "Content-Type":"application/json", "Accept":"application/json" },
         body: JSON.stringify({
@@ -61,9 +79,12 @@ export default function ContactCard() {
           _replyto: form.email,
         }),
       });
-    } catch(_) {}
+      if (!res.ok) throw new Error("send failed");
+      setSent(true);
+    } catch(_) {
+      setErrors({ form:"Couldn't send right now. Please try WhatsApp or email instead." });
+    }
     setLoading(false);
-    setSent(true);
   };
 
   return (
@@ -135,30 +156,106 @@ export default function ContactCard() {
           cursor:pointer;transition:all 0.25s;text-decoration:none;font-family:var(--font-body);
         }
         .social-btn-cc:hover{border-color:rgba(124,77,255,0.4);background:rgba(124,77,255,0.08);color:#c4b5fd;transform:translateY(-1px);}
+        @keyframes ct-spin   { to { transform:rotate(360deg); } }
+        @keyframes ct-ping   { 0%{transform:scale(1);opacity:.55} 100%{transform:scale(2.4);opacity:0} }
+        @keyframes ct-float  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        @keyframes ct-sheen  { 0%{transform:translateX(-120%) skewX(-20deg)} 60%,100%{transform:translateX(220%) skewX(-20deg)} }
+        @keyframes ct-border { to { transform:rotate(360deg); } }
+
+        .ct-card { position:relative; }
+        .ct-ring { position:absolute; inset:-1px; border-radius:24px; overflow:hidden; pointer-events:none; z-index:0; }
+        .ct-ring::before { content:""; position:absolute; left:50%; top:50%; width:220%; aspect-ratio:1; margin:-110% 0 0 -110%;
+          background:conic-gradient(from 0deg, transparent 0 70%, rgba(37,211,102,.55) 80%, rgba(0,212,255,.55) 90%, rgba(124,77,255,.7) 96%, transparent 100%);
+          animation:ct-border 7s linear infinite; }
+        .ct-ring::after { content:""; position:absolute; inset:1px; border-radius:23px; background:linear-gradient(135deg, rgba(13,19,40,.97), rgba(8,13,30,.97)); }
+
+        .ct-status { display:inline-flex; align-items:center; gap:8px; padding:5px 12px; border-radius:999px; font-size:11px; font-weight:600; color:#86efac;
+          background:rgba(74,222,128,.08); border:1px solid rgba(74,222,128,.28); }
+        .ct-live { position:relative; width:7px; height:7px; border-radius:50%; background:#4ade80; box-shadow:0 0 8px #4ade80; }
+        .ct-live::after { content:""; position:absolute; inset:0; border-radius:50%; background:#4ade80; animation:ct-ping 1.8s ease-out infinite; }
+
+        .ct-wa { position:relative; overflow:hidden; display:flex; align-items:center; gap:14px; width:100%; padding:13px 16px; border-radius:16px; text-decoration:none; color:#fff; cursor:pointer;
+          background:linear-gradient(135deg, rgba(37,211,102,.30), rgba(18,140,126,.20)); border:1px solid rgba(37,211,102,.5);
+          box-shadow:0 0 0 1px rgba(255,255,255,.04) inset, 0 10px 34px rgba(37,211,102,.18); transition:transform .25s, box-shadow .25s, border-color .25s; }
+        .ct-wa:hover { transform:translateY(-3px); border-color:rgba(37,211,102,.9); box-shadow:0 14px 44px rgba(37,211,102,.38); }
+        .ct-wa::after { content:""; position:absolute; top:0; left:0; width:40%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent); animation:ct-sheen 4.5s ease-in-out infinite; pointer-events:none; }
+        .ct-wa-ico { position:relative; flex:0 0 42px; width:42px; height:42px; border-radius:13px; display:flex; align-items:center; justify-content:center; color:#fff;
+          background:linear-gradient(135deg,#25d366,#128c7e); box-shadow:0 6px 20px rgba(37,211,102,.5); animation:ct-float 3.4s ease-in-out infinite; }
+        .ct-wa-ico::before { content:""; position:absolute; inset:0; border-radius:13px; border:2px solid #25d366; animation:ct-ping 2.2s ease-out infinite; }
+        .ct-wa b { display:block; font-family:var(--font-display); font-size:14.5px; font-weight:800; letter-spacing:-.01em; }
+        .ct-wa span.sub { display:block; margin-top:1px; font-size:11.5px; color:rgba(255,255,255,.62); }
+        .ct-wa .go { margin-left:auto; flex:none; color:rgba(255,255,255,.7); transition:transform .25s, color .25s; }
+        .ct-wa:hover .go { transform:translate(3px,-3px); color:#fff; }
+
+        .ct-mail { display:flex; align-items:center; gap:10px; width:100%; padding:10px 14px; border-radius:14px; text-decoration:none; color:rgba(255,255,255,.78); font-size:12.5px; font-weight:600;
+          background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); transition:all .25s; word-break:break-all; }
+        .ct-mail:hover { border-color:rgba(96,165,250,.5); background:rgba(96,165,250,.1); color:#fff; transform:translateY(-2px); }
+        .ct-mail .mi { flex:none; width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#60a5fa; background:rgba(96,165,250,.14); border:1px solid rgba(96,165,250,.3); }
+
+        .ct-soc { display:flex; gap:8px; }
+        .ct-soc a { flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:9px 0; border-radius:12px; text-decoration:none; font-size:12px; font-weight:600; color:rgba(255,255,255,.6);
+          background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); transition:all .25s; }
+        .ct-soc a:hover { color:#fff; border-color:var(--hc); background:color-mix(in srgb, var(--hc) 14%, transparent); transform:translateY(-3px); box-shadow:0 8px 22px color-mix(in srgb, var(--hc) 30%, transparent); }
+
+        .ct-wa-modal { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:13px; border-radius:14px; text-decoration:none; color:#fff; font-family:var(--font-display); font-weight:800; font-size:14px;
+          background:linear-gradient(135deg,#25d366,#128c7e); border:1px solid rgba(37,211,102,.6); box-shadow:0 10px 30px rgba(37,211,102,.3); transition:all .3s; }
+        .ct-wa-modal:hover { transform:translateY(-2px); box-shadow:0 14px 40px rgba(37,211,102,.5); }
+        .ct-or { display:flex; align-items:center; gap:12px; margin:18px 0 2px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.3); }
+        .ct-or::before, .ct-or::after { content:""; flex:1; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent); }
+        @media (prefers-reduced-motion: reduce) { .ct-ring::before, .ct-wa::after, .ct-wa-ico, .ct-wa-ico::before, .ct-live::after { animation:none; } }
       `}</style>
 
       {/* ── CARD ── */}
-      <CardWrapper style={{ display:"flex", flexDirection:"column", justifyContent:"center" }}>
+      <CardWrapper className="ct-card" style={{ display:"flex", flexDirection:"column", justifyContent:"center" }}>
+        <div className="ct-ring" aria-hidden="true" />
         <div className="contact-gradient" />
-        <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:200, height:200, borderRadius:"50%", background:"rgba(124,77,255,0.12)", filter:"blur(60px)", pointerEvents:"none" }} />
-        <div style={{ position:"relative", zIndex:1 }}>
-          <p className="section-label">Let's Build</p>
-          <h3 style={{ fontFamily:"var(--font-display)", fontSize:30, fontWeight:800, marginTop:10, lineHeight:1.1, letterSpacing:"-0.03em" }}>
-            Have an <span style={{ background:"linear-gradient(135deg,#a78bfa,#60a5fa)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>idea?</span>
-          </h3>
-          <p style={{ marginTop:10, fontSize:13, color:"rgba(255,255,255,0.42)", lineHeight:1.7 }}>
-            Let's turn your vision into a stunning, high-performance digital product.
-          </p>
-          <div style={{ display:"flex", gap:8, marginTop:18, flexWrap:"wrap" }}>
+        <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:220, height:220, borderRadius:"50%", background:"rgba(124,77,255,0.14)", filter:"blur(60px)", pointerEvents:"none" }} />
+        <div style={{ position:"absolute", bottom:-40, right:-30, width:160, height:160, borderRadius:"50%", background:"rgba(37,211,102,0.12)", filter:"blur(55px)", pointerEvents:"none" }} />
+
+        <div style={{ position:"relative", zIndex:1, display:"flex", flexDirection:"column", gap:14 }}>
+          <div>
+            <p className="section-label">Let&apos;s Build</p>
+            <h3 style={{ fontFamily:"var(--font-display)", fontSize:30, fontWeight:800, marginTop:10, lineHeight:1.1, letterSpacing:"-0.03em" }}>
+              Have an <span style={{ background:"linear-gradient(135deg,#a78bfa,#60a5fa,#34d399)", WebkitBackgroundClip:"text", backgroundClip:"text", WebkitTextFillColor:"transparent" }}>idea?</span>
+            </h3>
+            <p style={{ marginTop:8, fontSize:13, color:"rgba(255,255,255,0.45)", lineHeight:1.65 }}>
+              Let&apos;s turn your vision into a stunning, high-performance digital product.
+            </p>
+          </div>
+
+          <span className="ct-status" style={{ width:"fit-content" }}>
+            <span className="ct-live" />
+            Available now{time ? ` · Delhi ${time}` : ""}
+          </span>
+
+          {/* WhatsApp — fastest */}
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="ct-wa" aria-label="Chat with Abhijeet on WhatsApp">
+            <span className="ct-wa-ico"><WhatsApp size={22} /></span>
+            <span>
+              <b>Chat on WhatsApp</b>
+              <span className="sub">Fastest way to reach me</span>
+            </span>
+            <span className="go"><ArrowUpRight /></span>
+          </a>
+
+          {/* Email */}
+          <a href={`mailto:${EMAIL}`} className="ct-mail">
+            <span className="mi"><Mail2 /></span>
+            {EMAIL}
+          </a>
+
+          {/* Socials */}
+          <div className="ct-soc">
             {socials.map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="social-btn-cc">
-                <span style={{ color:s.color, display:"flex" }}>{s.icon}</span>
-                {s.label}
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+                 style={{ ["--hc" as string]: s.label === "GitHub" ? "#a78bfa" : s.label === "LinkedIn" ? "#60a5fa" : "#f472b6" }}>
+                {s.icon}{s.label}
               </a>
             ))}
           </div>
-          <button className="btn-primary" onClick={() => { setOpen(true); setSent(false); }} style={{ marginTop:50, width:"100%", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
-            <Send /> Contact Me
+
+          <button className="btn-primary" onClick={() => { setOpen(true); setSent(false); setErrors({}); }} style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
+            <Send /> Send a Message
           </button>
         </div>
       </CardWrapper>
@@ -186,7 +283,7 @@ export default function ContactCard() {
                   <h3 style={{ fontFamily:"var(--font-display)", fontSize:24, fontWeight:800, margin:"0 0 8px", letterSpacing:"-0.02em" }}>Message Sent! 🎉</h3>
                   <p style={{ fontSize:14, color:"rgba(255,255,255,0.45)", lineHeight:1.7, margin:0 }}>
                     Thanks for reaching out, <strong style={{ color:"#a78bfa" }}>{form.name.split(" ")[0]}</strong>!<br/>
-                    I'll get back to you at <strong style={{ color:"#60a5fa" }}>{form.email}</strong> within 24 hours.
+                    I&apos;ll get back to you at <strong style={{ color:"#60a5fa" }}>{form.email}</strong> within 24 hours.
                   </p>
                 </div>
                 <button className="ct-submit" style={{ maxWidth:200 }} onClick={() => setOpen(false)}>Close</button>
@@ -197,14 +294,19 @@ export default function ContactCard() {
                 {/* Header */}
                 <div style={{ marginBottom:24 }}>
                   <h3 style={{ fontFamily:"var(--font-display)", fontSize:22, fontWeight:800, letterSpacing:"-0.02em", margin:"0 0 6px" }}>
-                    Let's work together
+                    Let&apos;s work together
                   </h3>
                   <p style={{ fontSize:13, color:"rgba(255,255,255,0.4)", margin:0 }}>
-                    Fill in the details below and I'll get back within 24 hours.
+                    Fill in the details below and I&apos;ll get back within 24 hours.
                   </p>
                 </div>
 
-                <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+                <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="ct-wa-modal">
+                  <WhatsApp size={20} /> Chat on WhatsApp <span style={{ fontWeight:600, opacity:.8, fontSize:12 }}>· fastest reply</span>
+                </a>
+                <div className="ct-or">or send a message</div>
+
+                <div style={{ display:"flex", flexDirection:"column", gap:14, marginTop:14 }}>
                   {/* Name */}
                   <div>
                     <div className="ct-field-wrap">
@@ -242,6 +344,8 @@ export default function ContactCard() {
                     {errors.message && <p className="ct-error-msg">{errors.message}</p>}
                   </div>
 
+                  {errors.form && <p className="ct-error-msg" style={{ margin:0, padding:"10px 12px", borderRadius:10, background:"rgba(248,113,113,.08)", border:"1px solid rgba(248,113,113,.3)" }}>{errors.form} <a href={WA_URL} target="_blank" rel="noopener noreferrer" style={{ color:WA_COLOR, fontWeight:700 }}>Open WhatsApp</a></p>}
+
                   {/* Submit */}
                   <button className="ct-submit" onClick={handleSubmit} disabled={loading}>
                     {loading ? (
@@ -253,9 +357,9 @@ export default function ContactCard() {
                 </div>
 
                 {/* Social row */}
-                <div style={{ marginTop:20, paddingTop:20, borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
+                <div style={{ marginTop:20, paddingTop:20, borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", gap:4, flexWrap:"wrap" }}>
                   <span style={{ fontSize:12, color:"rgba(255,255,255,0.3)" }}>Or connect:</span>
-                  {socials.map(s=>(
+                  {[{ icon:<WhatsApp size={16} />, label:"WhatsApp", href:WA_URL, color:WA_COLOR }, ...socials].map(s=>(
                     <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display:"flex", alignItems:"center", gap:6, padding:"5px 12px", borderRadius:8, border:"1px solid rgba(255,255,255,0.07)", background:"rgba(255,255,255,0.03)", fontSize:12, color:s.color, textDecoration:"none", transition:"all 0.2s" }}>
                       {s.icon}{s.label}
                     </a>

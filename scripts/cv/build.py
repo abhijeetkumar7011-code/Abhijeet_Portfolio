@@ -16,7 +16,7 @@ with sync_playwright() as pw:
     p.evaluate("document.fonts.ready")
     # overflow check: nothing may spill past the page
     over = p.evaluate("""() => { const m = document.querySelector('.main'); const s = document.querySelector('.side');
-      return { mainOverflow: m.scrollHeight - m.clientHeight, sideOverflow: s.scrollHeight - s.clientHeight } }""")
+      const pg = document.querySelector('.page'); return { pageOverflow: pg.scrollHeight - 1123, mainOverflow: m.scrollHeight - m.clientHeight, sideOverflow: s.scrollHeight - s.clientHeight, freeBelowProjects: Math.round(document.querySelector('.foot').getBoundingClientRect().top - document.querySelector('.pg').getBoundingClientRect().bottom) } }""")
     print("overflow px:", over)
     p.pdf(path=str(out), width="794px", height="1123px", print_background=True, prefer_css_page_size=False,
           margin={"top": "0", "right": "0", "bottom": "0", "left": "0"})
